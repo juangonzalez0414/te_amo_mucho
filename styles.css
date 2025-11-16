@@ -1,0 +1,283 @@
+:root {
+    /* Variables con transparencia integradas */
+    --general-bg: #f0e6fa;   
+    --collage-bg: #eba5ffbc; /* Lila con transparencia */
+    --letter-bg: #f5eef7a7; /* Lila muy claro con transparencia */
+    --border-color: #b298bd; 
+    --accent-color: #8a2be2; 
+    --text-color-dark: #333333; 
+    --text-color-medium: #555555; 
+    --main-shadow: 0 15px 40px rgba(255, 0, 238, 0.2); /* Nueva sombra púrpura */
+}
+
+body {
+    font-family: 'Playfair Display', serif; 
+    background-color: var(--general-bg); 
+    background-image: url(img/6.jpg); /* Imagen de fondo añadida */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Opcional: fija el fondo al hacer scroll */
+
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden; 
+    color: var(--text-color-dark); 
+}
+
+.main-container {
+    display: flex;
+    width: 90vw;
+    height: 90vh;
+    box-shadow: var(--main-shadow); /* Usamos la nueva sombra */
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.collage-section {
+    flex: 1.5; 
+    background-color: var(--collage-bg); 
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    overflow: hidden;
+}
+
+.collage-title {
+    color: var(--accent-color); 
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.photo-collage {
+    position: relative;
+    width: 100%;
+    height: 70%;
+}
+
+.collage-photo {
+    position: absolute;
+    width: 220px; 
+    height: 180px; 
+    object-fit: cover;
+    border: 5px solid white; 
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.8s ease-in-out, z-index 0.1s, top 0.8s, left 0.8s; 
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.photo-1 { top: 8%; left: 3%; transform: rotate(-8deg); z-index: 5; }
+.photo-2 { top: 20%; left: 35%; transform: rotate(12deg); z-index: 3; }
+.photo-3 { top: 45%; left: 5%; transform: rotate(3deg); z-index: 4; }
+.photo-4 { top: 3%; right: 5%; transform: rotate(18deg); z-index: 6; }
+.photo-5 { top: 55%; right: 3%; transform: rotate(-5deg); z-index: 2; }
+
+.collage-photo:hover {
+    transform: scale(1.1) rotate(0deg) !important; 
+    z-index: 10;
+}
+
+.shuffle-button {
+    background-color: var(--accent-color); 
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 2;
+}
+
+.shuffle-button:hover {
+    background-color: #6a1ba3; 
+    transform: scale(1.05);
+}
+
+.letter-section {
+    flex: 1; 
+    background-color: var(--letter-bg); 
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.letter-paper {
+    background-color: white; 
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 450px;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    border: 1px solid var(--border-color); 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1; 
+}
+
+.letter-paper.expanded {
+    overflow-y: auto; 
+}
+
+.letter-paper h2 {
+    color: var(--accent-color); 
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: 'Dancing Script', cursive; 
+}
+
+.love-letter-textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-family: 'Lora', serif; 
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-color-dark); 
+    background: none;
+    flex-grow: 1; 
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.love-letter-textarea.expanded {
+    overflow: auto;
+}
+
+.read-more-button {
+    background-color: var(--text-color-medium); 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    margin-top: auto; 
+}
+
+.read-more-button:hover {
+    background-color: var(--accent-color); 
+}
+
+.sparkle {
+    position: absolute;
+    background-color: #e0b0ff; 
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle-fade 1s forwards; 
+    z-index: 1000;
+}
+
+@keyframes sparkle-fade {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+/* ------------------------------------- */
+/* Control de Música Flotante */
+/* ------------------------------------- */
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent-color); 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 1000; 
+}
+
+.music-control:hover {
+    background-color: #6a1ba3;
+    transform: scale(1.05);
+}
+
+/* ===================================== */
+/* ⭐ MEDIA QUERIES (ADAPTABILIDAD) ⭐ */
+/* ===================================== */
+@media (max-width: 900px) {
+    body {
+        /* Aseguramos que el scroll vertical funcione correctamente en móvil */
+        overflow-y: auto;
+        background-image: url(img/7.jpg); /* Cambiamos la imagen de fondo para móviles */
+    }
+    
+    .main-container {
+        flex-direction: column; 
+        height: auto;
+        width: 95vw;
+        max-height: none; 
+        overflow-y: visible; 
+        box-shadow: none; 
+        border-radius: 0;
+    }
+
+    .collage-section, .letter-section {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+        background-color: var(--collage-bg); /* Aplicamos el fondo con transparencia en la sección entera */
+    }
+    
+    .letter-section {
+        background-color: var(--letter-bg); /* Fondo de la carta para móviles */
+    }
+
+    .photo-collage {
+        height: 500px; 
+    }
+
+    .collage-photo {
+        width: 150px; 
+        height: 120px; 
+    }
+
+    .photo-1 { top: 5%; left: 5%; transform: rotate(-8deg); }
+    .photo-2 { top: 15%; right: 5%; transform: rotate(12deg); }
+    .photo-3 { top: 35%; left: 15%; transform: rotate(3deg); }
+    .photo-4 { top: 55%; right: 10%; transform: rotate(18deg); }
+    .photo-5 { top: 75%; left: 20%; transform: rotate(-5deg); }
+
+    .letter-paper {
+        height: auto; 
+        max-width: 95%; /* Ajuste para que no se pegue tanto a los bordes */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+        padding: 20px;
+    }
+
+    .love-letter-textarea {
+        height: 250px; 
+        flex-grow: 0; 
+    }
+    
+    /* Ajuste responsivo para el botón de música */
+    .music-control {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
